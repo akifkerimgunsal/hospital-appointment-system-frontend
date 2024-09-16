@@ -1,0 +1,19 @@
+<div class="appointment-cancel-container">
+  <h2>Randevu İptal</h2>
+  <table>
+    <tr>
+      <th>Doktor Adı</th>
+      <th>Tarih</th>
+      <th>Saat</th>
+      <th>İşlem</th>
+    </tr>
+    <tr *ngFor="let appointment of appointments">
+      <td>{{ appointment.doctorName }}</td>
+      <td>{{ appointment.date }}</td>
+      <td>{{ appointment.time }}</td>
+      <td>
+        <button (click)="cancelAppointment(appointment.id)">İptal Et</button>
+      </td>
+    </tr>
+  </table>
+</div>

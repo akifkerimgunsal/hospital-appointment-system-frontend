@@ -1,0 +1,18 @@
+<div class="past-appointments-container">
+    <h2>Geçmiş Randevularım</h2>
+    <table>
+      <tr>
+        <th>Doktor</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th>Durum</th>
+      </tr>
+      <tr *ngFor="let appointment of pastAppointments">
+        <td>{{ appointment.doctor }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.status }}</td>
+      </tr>
+    </table>
+  </div>
+  

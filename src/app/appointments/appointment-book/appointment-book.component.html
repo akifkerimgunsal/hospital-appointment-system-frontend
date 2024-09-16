@@ -1,0 +1,15 @@
+<div class="appointment-book-container">
+  <h2>Randevu Al</h2>
+  <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+    <label for="doctorName">Doktor Adı</label>
+    <input id="doctorName" formControlName="doctorName" type="text" placeholder="Doktor adı girin">
+
+    <label for="date">Tarih</label>
+    <input id="date" formControlName="date" type="date">
+
+    <label for="time">Saat</label>
+    <input id="time" formControlName="time" type="time">
+
+    <button type="submit" [disabled]="appointmentForm.invalid">Randevu Al</button>
+  </form>
+</div>

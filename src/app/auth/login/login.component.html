@@ -1,0 +1,12 @@
+<div class="login-container">
+  <h2>Giriş Yap</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label for="email">E-posta</label>
+    <input id="email" formControlName="email" type="email" placeholder="E-postanızı girin">
+    <br>
+    <label for="password">Şifre</label>
+    <input id="password" formControlName="password" type="password" placeholder="Şifrenizi girin">
+    <br>
+    <button type="submit" [disabled]="loginForm.invalid">Giriş Yap</button>
+  </form>
+</div>

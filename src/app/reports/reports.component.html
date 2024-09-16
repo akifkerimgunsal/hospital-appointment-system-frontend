@@ -1,0 +1,14 @@
+<div class="reports-container">
+    <h2>Sistem Raporları</h2>
+    <table>
+      <tr>
+        <th>Rapor Adı</th>
+        <th>Veri</th>
+      </tr>
+      <tr *ngFor="let report of reports">
+        <td>{{ report.reportName }}</td>
+        <td>{{ report.data }}</td>
+      </tr>
+    </table>
+  </div>
+  

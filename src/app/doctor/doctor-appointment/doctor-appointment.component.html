@@ -1,0 +1,16 @@
+<div class="doctor-appointment-container">
+    <h2>Randevularım</h2>
+    <table>
+      <tr>
+        <th>Hasta Adı</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+      </tr>
+      <tr *ngFor="let appointment of appointments">
+        <td>{{ appointment.patientName }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+      </tr>
+    </table>
+  </div>
+  

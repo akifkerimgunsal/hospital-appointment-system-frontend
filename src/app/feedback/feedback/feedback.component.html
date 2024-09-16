@@ -1,0 +1,16 @@
+<div class="feedback-container">
+    <h2>Geri Bildirim Bırakın</h2>
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+      <label for="name">Adınız</label>
+      <input id="name" formControlName="name" type="text" placeholder="Adınızı girin">
+  
+      <label for="email">E-posta</label>
+      <input id="email" formControlName="email" type="email" placeholder="E-posta adresinizi girin">
+  
+      <label for="feedback">Geri Bildiriminiz</label>
+      <textarea id="feedback" formControlName="feedback" placeholder="Geri bildiriminizi yazın"></textarea>
+  
+      <button type="submit" [disabled]="feedbackForm.invalid">Gönder</button>
+    </form>
+  </div>
+  

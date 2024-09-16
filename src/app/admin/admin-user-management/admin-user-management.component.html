@@ -1,0 +1,20 @@
+<div class="user-management-container">
+  <h2>Kullanıcı Yönetimi</h2>
+  <table>
+    <tr>
+      <th>Kullanıcı Adı</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>İşlemler</th>
+    </tr>
+    <tr *ngFor="let user of users">
+      <td>{{ user.name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.role }}</td>
+      <td>
+        <button (click)="editUser(user)">Düzenle</button>
+        <button class="delete" (click)="deleteUser(user.id)">Sil</button>
+      </td>
+    </tr>
+  </table>
+</div>
