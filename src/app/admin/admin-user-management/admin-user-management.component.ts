@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-user-management',
@@ -6,27 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-user-management.component.scss']
 })
 export class AdminUserManagementComponent implements OnInit {
-  // Kullanıcı listesini tutacak dizi
-  users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-    { id: 2, name: 'Jane Doe', email: 'jane@example.com', role: 'Doctor' }
-  ];
+  users: any[] = [];
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    // Burada backend'den kullanıcıları almak için bir servis çağırabilirsiniz
+    this.adminService.getUsers().subscribe(data => {
+      this.users = data;
+    });
   }
 
-  // Kullanıcı düzenleme fonksiyonu
-  editUser(user: any): void {
-    console.log('Kullanıcı düzenleniyor: ' + user.name);
-    // Burada kullanıcı düzenleme işlemleri yapılabilir
-  }
-
-  // Kullanıcı silme fonksiyonu
   deleteUser(userId: number): void {
-    console.log('Kullanıcı siliniyor: ' + userId);
-    // Burada kullanıcı silme işlemi yapılabilir
+    this.adminService.deleteUser(userId).subscribe(() => {
+      this.users = this.users.filter(user => user.id !== userId);
+    });
   }
 }

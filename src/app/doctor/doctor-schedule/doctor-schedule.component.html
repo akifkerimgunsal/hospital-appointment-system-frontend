@@ -1,16 +1,15 @@
 <div class="doctor-schedule-container">
-    <h2>Çalışma Takvimi</h2>
-    <table>
-      <tr>
-        <th>Gün</th>
-        <th>Başlangıç Saati</th>
-        <th>Bitiş Saati</th>
-      </tr>
-      <tr *ngFor="let entry of schedule">
-        <td>{{ entry.day }}</td>
-        <td>{{ entry.startTime }}</td>
-        <td>{{ entry.endTime }}</td>
-      </tr>
-    </table>
-  </div>
-  
+  <h2>Çalışma Takvimim</h2>
+  <table>
+    <tr>
+      <th>Gün</th>
+      <th>Başlangıç Saati</th>
+      <th>Bitiş Saati</th>
+    </tr>
+    <tr *ngFor="let entry of schedule">
+      <td>{{ entry.day }}</td>
+      <td>{{ entry.startTime }}</td>
+      <td>{{ entry.endTime }}</td>
+    </tr>
+  </table>
+</div>

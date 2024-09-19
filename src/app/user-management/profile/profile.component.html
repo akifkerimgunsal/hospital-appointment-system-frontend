@@ -1,19 +1,15 @@
-<div class="profile-container">
-    <h2>Profilimi Güncelle</h2>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <label for="firstName">Ad</label>
-      <input id="firstName" formControlName="firstName" type="text" placeholder="Adınızı girin">
-  
-      <label for="lastName">Soyad</label>
-      <input id="lastName" formControlName="lastName" type="text" placeholder="Soyadınızı girin">
-  
-      <label for="email">E-posta</label>
-      <input id="email" formControlName="email" type="email" placeholder="E-posta adresinizi girin">
-  
-      <label for="phoneNumber">Telefon Numarası</label>
-      <input id="phoneNumber" formControlName="phoneNumber" type="text" placeholder="Telefon numaranızı girin">
-  
-      <button type="submit" [disabled]="profileForm.invalid">Güncelle</button>
-    </form>
-  </div>
-  
+<div>
+  <h2>Profilimi Güncelle</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label for="name">Ad</label>
+    <input id="name" formControlName="name" type="text">
+
+    <label for="email">E-posta</label>
+    <input id="email" formControlName="email" type="email">
+
+    <label for="phoneNumber">Telefon Numarası</label>
+    <input id="phoneNumber" formControlName="phoneNumber" type="text">
+
+    <button type="submit" [disabled]="profileForm.invalid">Güncelle</button>
+  </form>
+</div>

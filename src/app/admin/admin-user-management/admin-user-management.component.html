@@ -1,4 +1,4 @@
-<div class="user-management-container">
+<div class="admin-user-management-container">
   <h2>Kullanıcı Yönetimi</h2>
   <table>
     <tr>
@@ -12,8 +12,7 @@
       <td>{{ user.email }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <button (click)="editUser(user)">Düzenle</button>
-        <button class="delete" (click)="deleteUser(user.id)">Sil</button>
+        <button (click)="deleteUser(user.id)">Sil</button>
       </td>
     </tr>
   </table>

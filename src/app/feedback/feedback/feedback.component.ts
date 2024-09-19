@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FeedbackService } from '../../services/feedback.service';
 
 @Component({
   selector: 'app-feedback',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FeedbackComponent implements OnInit {
   feedbackForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private feedbackService: FeedbackService) { }
 
   ngOnInit(): void {
     this.feedbackForm = this.fb.group({
@@ -21,9 +22,9 @@ export class FeedbackComponent implements OnInit {
 
   onSubmit(): void {
     if (this.feedbackForm.valid) {
-      const formData = this.feedbackForm.value;
-      console.log('Geri Bildirim Verileri:', formData);
-      // API'ye gönderme işlemi burada yapılabilir
+      this.feedbackService.sendFeedback(this.feedbackForm.value).subscribe(response => {
+        console.log('Feedback sent successfully!', response);
+      });
     }
   }
 }

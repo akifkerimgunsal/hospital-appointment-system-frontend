@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-notifications',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NotificationsComponent implements OnInit {
   notificationForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.notificationForm = this.fb.group({
@@ -21,9 +22,9 @@ export class NotificationsComponent implements OnInit {
 
   onSubmit(): void {
     if (this.notificationForm.valid) {
-      const formData = this.notificationForm.value;
-      console.log('Bildirim Formu Verileri:', formData);
-      // API'ye gönderme işlemi burada yapılır
+      this.notificationService.sendNotification(this.notificationForm.value).subscribe(response => {
+        console.log('Bildirim gönderildi!', response);
+      });
     }
   }
 }

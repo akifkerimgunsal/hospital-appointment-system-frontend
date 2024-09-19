@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,22 +10,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.required]
+    });
+
+    this.userService.getUserById(1).subscribe(data => {
+      this.profileForm.patchValue(data);
     });
   }
 
   onSubmit(): void {
     if (this.profileForm.valid) {
-      const formData = this.profileForm.value;
-      console.log('Profil Formu Verileri:', formData);
-      // API'ye gönderme işlemi burada yapılır
+      this.userService.updateProfile(this.profileForm.value).subscribe(response => {
+        console.log('Profil güncellendi!', response);
+      });
     }
   }
 }

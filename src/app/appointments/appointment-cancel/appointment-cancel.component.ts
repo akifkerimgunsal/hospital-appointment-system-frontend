@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-appointment-cancel',
@@ -6,21 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appointment-cancel.component.scss']
 })
 export class AppointmentCancelComponent implements OnInit {
+  appointments: any[] = [];
 
-  appointments = [
-    { id: 1, doctorName: 'Dr. Smith', date: '2022-10-20', time: '10:00' },
-    { id: 2, doctorName: 'Dr. Johnson', date: '2022-10-21', time: '11:00' }
-  ];
-
-  constructor() { }
+  constructor(private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
-    // Backend'den randevular alınabilir
+    this.appointmentService.getAppointments().subscribe(data => {
+      this.appointments = data;
+    });
   }
 
-  cancelAppointment(appointmentId: number): void {
-    console.log('Randevu iptal ediliyor: ' + appointmentId);
-    // API ile iptal işlemi yapılabilir
+  cancelAppointment(id: number): void {
+    this.appointmentService.cancelAppointment(id).subscribe(() => {
+      this.appointments = this.appointments.filter(appointment => appointment.id !== id);
+    });
   }
-
 }

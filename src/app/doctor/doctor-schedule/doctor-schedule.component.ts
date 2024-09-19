@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DoctorService } from '../../services/doctor.service';
 
 @Component({
   selector: 'app-doctor-schedule',
@@ -6,16 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./doctor-schedule.component.scss']
 })
 export class DoctorScheduleComponent implements OnInit {
+  schedule: any[] = [];
 
-  schedule = [
-    { day: 'Monday', startTime: '09:00', endTime: '17:00' },
-    { day: 'Tuesday', startTime: '09:00', endTime: '17:00' }
-  ];
-
-  constructor() { }
+  constructor(private doctorService: DoctorService) { }
 
   ngOnInit(): void {
-    // Backend'den çalışma takvimini almak için API çağrısı yapılabilir
+    this.doctorService.getDoctorSchedule(1).subscribe(data => {
+      this.schedule = data;
+    });
   }
-
 }

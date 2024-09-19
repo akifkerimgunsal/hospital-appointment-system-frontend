@@ -2,10 +2,10 @@
   <h2>Bildirim Gönder</h2>
   <form [formGroup]="notificationForm" (ngSubmit)="onSubmit()">
     <label for="email">E-posta</label>
-    <input id="email" formControlName="email" type="email" placeholder="E-posta girin">
+    <input id="email" formControlName="email" type="email">
 
     <label for="message">Mesaj</label>
-    <textarea id="message" formControlName="message" placeholder="Mesajınızı girin"></textarea>
+    <textarea id="message" formControlName="message"></textarea>
 
     <label for="sendType">Bildirim Türü</label>
     <select id="sendType" formControlName="sendType">

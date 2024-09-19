@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppointmentService } from '../../services/appointment.service';
 
 @Component({
   selector: 'app-appointment-book',
@@ -9,10 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AppointmentBookComponent implements OnInit {
   appointmentForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private appointmentService: AppointmentService) { }
 
   ngOnInit(): void {
-    // Randevu alma formu
     this.appointmentForm = this.fb.group({
       doctorName: ['', Validators.required],
       date: ['', Validators.required],
@@ -22,9 +22,10 @@ export class AppointmentBookComponent implements OnInit {
 
   onSubmit(): void {
     if (this.appointmentForm.valid) {
-      const formData = this.appointmentForm.value;
-      console.log('Randevu Formu Verileri:', formData);
-      // API'ye gönderme işlemi burada yapılır
+      this.appointmentService.createAppointment(this.appointmentForm.value).subscribe(response => {
+
+        console.log('Randevu başarıyla alındı!', response);
+      });
     }
   }
 }

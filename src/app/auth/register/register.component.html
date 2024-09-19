@@ -2,20 +2,20 @@
   <h2>Kayıt Ol</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <label for="firstName">Ad</label>
-    <input id="firstName" formControlName="firstName" type="text" placeholder="Adınızı girin">
+    <input id="firstName" formControlName="FirstName" type="text" placeholder="Adınızı girin">
     
     <br>
     <label for="lastName">Soyad</label>
-    <input id="lastName" formControlName="lastName" type="text" placeholder="Soyadınızı girin">
+    <input id="lastName" formControlName="LastName" type="text" placeholder="Soyadınızı girin">
     <br>
     <label for="email">E-posta</label>
-    <input id="email" formControlName="email" type="email" placeholder="E-postanızı girin">
+    <input id="email" formControlName="Email" type="email" placeholder="E-postanızı girin">
     <br>
     <label for="password">Şifre</label>
-    <input id="password" formControlName="password" type="password" placeholder="Şifrenizi girin">
+    <input id="password" formControlName="Password" type="password" placeholder="Şifrenizi girin">
     <br>
     <label for="phoneNumber">Telefon Numarası</label>
-    <input id="phoneNumber" formControlName="phoneNumber" type="text" placeholder="Telefon numaranızı girin">
+    <input id="phoneNumber" formControlName="PhoneNumber" type="text" placeholder="Telefon numaranızı girin">
     <br>
     <button type="submit" [disabled]="registerForm.invalid">Kayıt Ol</button>
   </form>

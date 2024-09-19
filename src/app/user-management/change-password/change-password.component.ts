@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-change-password',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ChangePasswordComponent implements OnInit {
   passwordForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.passwordForm = this.fb.group({
@@ -21,9 +22,9 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit(): void {
     if (this.passwordForm.valid) {
-      const formData = this.passwordForm.value;
-      console.log('Şifre Değişikliği Formu Verileri:', formData);
-      // API'ye gönderme işlemi burada yapılır
+      this.userService.changePassword(this.passwordForm.value).subscribe(response => {
+        console.log('Şifre değiştirildi!', response);
+      });
     }
   }
 }

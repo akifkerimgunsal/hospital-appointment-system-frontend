@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-admin-appointment-management',
@@ -6,21 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-appointment-management.component.scss']
 })
 export class AdminAppointmentManagementComponent implements OnInit {
-  // Randevu listesini tutacak dizi
-  appointments = [
-    { id: 1, patientName: 'John Doe', doctorName: 'Dr. Smith', date: '2022-10-20' },
-    { id: 2, patientName: 'Jane Doe', doctorName: 'Dr. Johnson', date: '2022-10-21' }
-  ];
+  appointments: any[] = [];
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    // Burada backend'den randevuları almak için bir servis çağırabilirsiniz
+    this.adminService.getAppointments().subscribe(data => {
+      this.appointments = data;
+    });
   }
 
-  // Randevu iptal etme fonksiyonu
-  cancelAppointment(appointmentId: number): void {
-    console.log('Randevu iptal ediliyor: ' + appointmentId);
-    // Burada API çağrısı ile randevuyu iptal edebilirsiniz
+  deleteAppointment(appointmentId: number): void {
+    this.adminService.deleteAppointment(appointmentId).subscribe(() => {
+      this.appointments = this.appointments.filter(appointment => appointment.id !== appointmentId);
+    });
   }
 }

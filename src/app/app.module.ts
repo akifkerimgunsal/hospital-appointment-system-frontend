@@ -14,17 +14,24 @@ import { ReportsModule } from './reports/reports.module';
 import { PastAppointmentsModule } from './past-appointments/past-appointments.module';
 import { HelpAndFAQModule } from './help-and-faq/help-and-faq.module';
 import { FeedbackModule } from './feedback/feedback.module';
-import { routes } from './app.routes';  // Ana yönlendirme rotaları
+import { routes } from './app.routes';  
+
+import { UserService } from './services/user.service';
+import { AppointmentService } from './services/appointment.service';
+import { NotificationService } from './services/notification.service';
+import { DoctorService } from './services/doctor.service';
+import { AdminService } from './services/admin.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
-    AppComponent  // Sadece ana bileşen burada yer almalı
+    AppComponent  
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),  // Ana yönlendirme rotaları
+    RouterModule.forRoot(routes),  
     AuthModule,
     AdminModule,
     AppointmentsModule,
@@ -35,7 +42,14 @@ import { routes } from './app.routes';  // Ana yönlendirme rotaları
     HelpAndFAQModule,
     FeedbackModule  // Feedback modülü burada tanımlanmalı
   ],
-  providers: [],
+  providers: [
+    UserService,
+    AppointmentService,
+    NotificationService,
+    DoctorService,
+    AdminService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
